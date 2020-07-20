@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/random")
 public class RandomizeServlet extends HttpServlet {
@@ -39,8 +40,8 @@ public class RandomizeServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String watchedAnime = getParameter(request, "anime-container", "");
-    if(watchedAnime!= ""){}
-    // do a search based on the 
+    if(watchedAnime!= ""){
+    // do a search based on the users entry
     Search<AnimePage> animePageSearch = new Search<>(Types.ANIME);
               personPageSearch.setQuery(watchedAnime).setLimit(10);
               CompletableFuture<AnimePage> completableFuture = animePageSearch.get();
@@ -55,7 +56,7 @@ public class RandomizeServlet extends HttpServlet {
               CompletableFuture<Anime> personCompletableFuture = animePageSearch.getByID(1);
               while (!animeCompletableFuture.isDone()) a++;
               System.out.println(animeCompletableFuture.get());
-
+    }
   }
   /*
     // Respond with the result.
@@ -64,7 +65,6 @@ public class RandomizeServlet extends HttpServlet {
     response.sendRedirect("index.html");
     response.getWriter().println(comments);
     */
-  }
   
 
   /**
@@ -80,18 +80,4 @@ public class RandomizeServlet extends HttpServlet {
   }
 }
 
-  }
-  */
-
-  /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
-  }
-}
+ 
