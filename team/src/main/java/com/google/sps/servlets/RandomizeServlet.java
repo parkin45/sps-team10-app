@@ -19,6 +19,7 @@ public class RandomizeServlet extends HttpServlet {
    
 
   @Override
+  /*
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String myHero = "My Hero Academia";
     String demonSlayer = "Demon Slayer";
@@ -33,19 +34,52 @@ public class RandomizeServlet extends HttpServlet {
     String suggest = suggestions.get(random.nextInt(suggestions.size()));
     System.out.println(suggest);
     response.getWriter().println(suggest); 
-}
-/*
- @Override
+}*/
+
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String name = getParameter(request, "userName", "");
-    String comment = getParameter(request, "comment", "");
-  
+    String watchedAnime = getParameter(request, "anime-container", "");
+    if(watchedAnime!= ""){}
+    // do a search based on the 
+    Search<AnimePage> animePageSearch = new Search<>(Types.ANIME);
+              personPageSearch.setQuery(watchedAnime).setLimit(10);
+              CompletableFuture<AnimePage> completableFuture = animePageSearch.get();
+              int a = 0;
+              while (!completableFuture.isDone()) a++;
+              System.out.println(completableFuture.get());
+        
+              completableFuture = animePageSearch.getFirst();
+              while (!completableFuture.isDone()) a++;
+              System.out.println(completableFuture.get());
+                     
+              CompletableFuture<Anime> personCompletableFuture = animePageSearch.getByID(1);
+              while (!animeCompletableFuture.isDone()) a++;
+              System.out.println(animeCompletableFuture.get());
+
+  }
+  /*
     // Respond with the result.
     response.setContentType("text/html;");
     comments.add(comment+"            --"+name);
     response.sendRedirect("index.html");
     response.getWriter().println(comments);
+    */
+  }
+  
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+}
+
   }
   */
 
