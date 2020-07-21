@@ -10,10 +10,6 @@ function handleErrors(response) {//in case etch malfunctions
 }
 
 function randomizeAnime() {
-    //retrieve list of anime from api somehow
-    // const genres = jikanjs.loadGenre(anime).//theoretically will load genres
-    // console.log(genres);
-
     //temp list of anime
     // const msgList =
     //     ['demon slayer',
@@ -24,11 +20,7 @@ function randomizeAnime() {
     //         'the disastarous life of saiki k',
     //         '¯\_(ツ)_/¯'];
 
-    // const msg = msgList[Math.floor(Math.random() * msgList.length)];
-    // const msgContainer = document.getElementById('random-container');
-    // createListElement(msg);
-    // msgContainer.innerText = msg;
-    // console.log(msg);
+    
 
     //a test for jikan.
     var msgList = [];
@@ -39,49 +31,23 @@ function randomizeAnime() {
         .then(text => {
             parsed = JSON.parse(text);
             listing = parsed.anime;
-            // var names = listing.map(function(item) {
-            //                                     return item['title'];
-            // });
             listing.forEach(function(obj) { console.log(typeof obj.title); 
                                             msgList.push(obj.title);
-            });
-            // msgList.concat(obj.title);
-            // });
-        }
-        );
-    console.log("Message list: ");
-    // console.log(typeof msgList.title);
-    console.log(msgList);
-    console.log("Message length: ");
-    console.log(msgList.length);
-    console.log("Message 5th element: ");
-    console.log(msgList[5]);
-    // var randomNumber = Math.floor(Math.random()*msgList.length);
-    // console.log(randomNumber);
-    // console.log("==end Message list==");
-    // const msg = msgList[Math.floor(Math.random() * msgList.length)];
-    // console.log("message: ");
+                                            });
+                                             console.log("Message list: ");
+ 
+    // console.log(msgList);
+    // console.log("Message length: ");
+    // console.log(msgList.length);
+    // console.log("Message 5th element: ");
+    // console.log(msgList[5]);
 
-    // console.log(Math.floor(Math.random() * msgList.length));//always returns 0
-    // console.log(msgList[7]);//returns undefined
-
-    // console.log("== end message ==");
-    // const msgContainer = document.getElementById('random-container');
-    // createListElement(msg);
-    // msgContainer.innerText = msg;
-    // console.log(msg);
-
-    // if (typeof this.response !== 'undefined') {
-    // var data = JSON.parse(this.response);
-    // data.forEach((anime) => { // Log each movie's title
-    //     console.log(anime.title)
-    // });
-    // }
-    // else{
-    //     console.log("data undefined, listing anyway");
-    //     console.log(this.response);
-    // }
-
+    const msg = msgList[Math.floor(Math.random() * msgList.length)];
+    const msgContainer = document.getElementById('random-container');
+    createListElement(msg);
+    msgContainer.innerText = msg;
+    console.log(msg);
+        });
 }
 /** I just laid the framwork and made this function the onclick for the 'click me' randomize button ---Nikita */
 

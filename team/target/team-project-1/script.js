@@ -24,11 +24,7 @@ function randomizeAnime() {
     //         'the disastarous life of saiki k',
     //         '¯\_(ツ)_/¯'];
 
-    // const msg = msgList[Math.floor(Math.random() * msgList.length)];
-    // const msgContainer = document.getElementById('random-container');
-    // createListElement(msg);
-    // msgContainer.innerText = msg;
-    // console.log(msg);
+    
 
     //a test for jikan.
     var msgList = [];
@@ -39,23 +35,27 @@ function randomizeAnime() {
         .then(text => {
             parsed = JSON.parse(text);
             listing = parsed.anime;
-            // var names = listing.map(function(item) {
-            //                                     return item['title'];
-            // });
             listing.forEach(function(obj) { console.log(typeof obj.title); 
                                             msgList.push(obj.title);
-            });
-            // msgList.concat(obj.title);
-            // });
-        }
-        );
-    console.log("Message list: ");
+                                            });
+                                             console.log("Message list: ");
     // console.log(typeof msgList.title);
     console.log(msgList);
     console.log("Message length: ");
     console.log(msgList.length);
     console.log("Message 5th element: ");
     console.log(msgList[5]);
+
+    const msg = msgList[Math.floor(Math.random() * msgList.length)];
+    const msgContainer = document.getElementById('random-container');
+    createListElement(msg);
+    msgContainer.innerText = msg;
+    console.log(msg);
+        });
+        
+       
+        
+    
     // var randomNumber = Math.floor(Math.random()*msgList.length);
     // console.log(randomNumber);
     // console.log("==end Message list==");
