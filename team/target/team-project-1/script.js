@@ -31,7 +31,7 @@ function randomizeAnime() {
     // console.log(msg);
 
     //a test for jikan.
-    const msgList = [];
+    var msgList = [];
     // var request = new XMLHttpRequest();
     // request.open('GET', 'https://api.jikan.moe/v3/genre/anime/6/1', true);
 
@@ -52,7 +52,10 @@ function randomizeAnime() {
     console.log("Message list: ");
     // console.log(typeof msgList.title);
     console.log(msgList);
-    // console.log(msgList.length);
+    console.log("Message length: ");
+    console.log(msgList.length);
+    console.log("Message 5th element: ");
+    console.log(msgList[5]);
     // var randomNumber = Math.floor(Math.random()*msgList.length);
     // console.log(randomNumber);
     // console.log("==end Message list==");
