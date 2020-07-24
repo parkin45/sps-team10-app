@@ -9,6 +9,7 @@ function handleErrors(response) {//in case etch malfunctions
     return response;
 }
 
+<<<<<<< HEAD
 function randomizeAnime() {
     //old temp list of anime
     // const msgList =
@@ -48,7 +49,53 @@ function randomizeAnime() {
             msgContainer.innerText = msg;
             console.log(msg);
         });
+=======
+function randomizeAnime(){
+//retrieve list of anime from api somehow
+// const genres = jikanjs.loadGenre(anime).//theoretically will load genres
+// console.log(genres);
+
+//temp list of anime
+const msgList =
+        ['demon slayer',
+            'my hero academia',
+            'fruits basket',
+            'soul eater',
+            'konosuba',
+            'the disastarous life of saiki k',
+            '¯\_(ツ)_/¯'];
+
+const msg = msgList[Math.floor(Math.random() * msgList.length)];
+    const msgContainer = document.getElementById('random-container');
+    createListElement(msg);
+    msgContainer.innerText = msg;
+    console.log(msg);
+>>>>>>> ba2e68072d112b924bac716072c05700602e1375
 }
+
+/** this function will eventually give a list of animes that are similar to user input */
+function anime(){
+//retrieve list of anime from api somehow
+// const genres = jikanjs.loadGenre(anime).//theoretically will load genres
+// console.log(genres);
+
+//temp list of anime
+const msgList =
+        ['demon slayer',
+            'my hero academia',
+            'fruits basket',
+            'soul eater',
+            'konosuba',
+            'the disastarous life of saiki k',
+            '¯\_(ツ)_/¯'];
+
+const msg = msgList[Math.floor(Math.random() * msgList.length)];
+    const msgContainer = document.getElementById('anime-container');
+    createListElement(msg);
+    msgContainer.innerText = msg;
+    console.log(msg);
+}
+
 /** I just laid the framwork and made this function the onclick for the 'click me' randomize button ---Nikita */
 
 /** Creates an <li> element containing text. */
@@ -57,4 +104,22 @@ function createListElement(text) {
     liElement.innerText = text;
     return liElement;
 }
-/** added this bc it might help lol ---Nikita */
+
+/** login info */
+const loginForm = document.getElementById("login-form");
+const loginButton = document.getElementById("login-form-submit");
+const loginErrorMsg = document.getElementById("login-error-msg");
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const username = loginForm.username.value;
+    const password = loginForm.password.value;
+
+    if (username === "user" && password === "web_dev") {
+        alert("You have successfully logged in.");
+        location.reload();
+    } else {
+        loginErrorMsg.style.opacity = 1;
+    }
+})
+
