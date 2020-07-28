@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Team Project</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 3px;
+}
+body {
+    background-image: url('/team-images/option20.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+}
+</style>
+  </head>
+  <body>
+      <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="links.html">Links</a>
+        <a href="login.html">Login</a>
+    </div>
+
+      <h1 style="border:2px solid #E9B8FF;width:200px;text-align:center; font-family: Helvetica, Arial, sans-serif;font-style: italic; background-color: #E7FEF9"> NANI?! </h1>
+      <p style="border:2px solid #E9B8FF;width:500px;text-align:center; background-color: #E7FEF9">Welcome to our site for Anime recommendations! Login to save your recs! </p>
+      <br> </br>
+      
+      <p style="border:2px solid #E9B8FF;width:200px;text-align:center; background-color: #E7FEF9"> You probably just finished an anime and feel like... </p> 
+      <img src="/team-images/first.jpg"  style="position:absolute; TOP:275px; LEFT:10px; WIDTH:150px; HEIGHT:150px;border:2px solid #E9B8FF;">
+      <img src="/team-images/third.jpg" style="position:absolute; TOP:425px; LEFT:40px; WIDTH:150px; HEIGHT:150px;border:2px solid #E9B8FF;">
+      <img src="/team-images/second.jpg" style="position:absolute; TOP:575px; LEFT:60px; WIDTH:150px; HEIGHT:150px;border:2px solid #E9B8FF;">
+      <p style="border:2px solid #E9B8FF;width:300px;text-align:center; background-color: #E7FEF9; position:absolute; TOP:620px; LEFT:220px;"> 
+          Don't worry! Find similar titles to the last Anime you watched by entering it in the textbar!</p>  
+      
+      <input type="text" placeholder="Enter an Anime Title..." style="border:2px solid #E9B8FF; border-radius: 8px; width:500px;text-align:left; background-color: #E7FEF9;position:absolute; TOP:690px; LEFT:620px;">
+      <button style="border:2px solid #E9B8FF; border-radius: 4px; text-align:center; background-color: #F6E3FE;position:absolute; TOP:690px; LEFT:1140px;"> Submit </button>
+      <div id="anime-container" style="border:2px solid #E9B8FF; width:300px; background-color: #FBFEC7;position:absolute; TOP:730px; LEFT:655px;">
+          <!-- Place holder for list of animes that will be listed; can be deleted later  NOELLE: would this be onclick too? if so, for now we can use randomizeAnime() -->
+          <li> Hello! </li>
+      </div>
+
+      <p style="border:2px solid #E9B8FF;width:400px;text-align:center; background-color: #E7FEF9; position:absolute; TOP:750px;"> Haven't watched Anime or want a random title to watch? Click for a random Anime!</p> 
+      <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
+      <button onclick = "randomizeAnime()" style="border:2px solid #E9B8FF; width: 85px; border-radius: 4px; text-align:center; background-color: #F6E3FE;position:absolute; TOP:775px; LEFT:415px;"> Click me &#9775; </button>
+      
+      <div id="random-container" style="border:2px solid #E9B8FF; width:200px; background-color: #FBFEC7;position:absolute; TOP:825px; LEFT:20px;">
+          <!-- Place holder for list of animes that will be listed; can be deleted later -->
+          <li> Demon Slayer! </li>
+      </div>
+
+  </body>
+</html>

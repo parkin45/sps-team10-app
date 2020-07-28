@@ -1,0 +1,47 @@
+
+.topnav {
+  overflow: hidden;
+  background-color: #F6E3FE;
+  margin: 0;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #FEE3FD;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #C587E0;
+  color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #F6E3FE; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #C7FEF5; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #DCC7FE; 
+}
