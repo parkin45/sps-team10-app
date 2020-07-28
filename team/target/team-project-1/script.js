@@ -64,12 +64,12 @@ function anime(){
 //link in following line will need to be constructed, of sorts from a dropdown of genres
 //http://api.jikan.moe/v3/top/anime/1?recommendations=
 
-    fetch('https://api.jikan.moe/v3/top/anime/1?recommendations=').then(handleErrors).then(response => response.text())//fetch from data
+    fetch('https://api.jikan.moe/v3/genre/anime/6').then(handleErrors).then(response => response.text())//fetch from data
         .then(text => {
             parsed = JSON.parse(text);
             console.log(parsed);
   
-            parsed.top.forEach(item =>{
+            parsed.anime.forEach(item =>{
                 // console.log(item.title);
                  msgList.push(item.title);
             })
