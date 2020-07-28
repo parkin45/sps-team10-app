@@ -60,6 +60,8 @@ function anime(){
 
 //jikan implementation
     var msgList = [];
+    var urlList = [];
+    var image_urlList = [];
 
 //link in following line will need to be constructed, of sorts from a dropdown of genres
 //http://api.jikan.moe/v3/top/anime/1?recommendations=
@@ -70,6 +72,7 @@ function anime(){
 //generate random page number too!
 var page ; //pulls a number 0 to 100 i think
 var lp;
+var index;
 
 //fetch last possible page
 fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/1').then(handleErrors).then(response => response.text())//fetch from data
@@ -95,6 +98,14 @@ fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/1').then(handleErrors).the
             parsed.anime.forEach(item =>{
                 // console.log(item.title);
                  msgList.push(item.title);
+                 
+                 urlList.push(item.url);
+                //  console.log("link:")
+                //  console.log(item.url);
+
+                 image_urlList.push(item.image_url);
+                //  console.log("image link:")
+                //  console.log(item.image_url);
             })
             
             // console.log("Message list: ");
@@ -104,11 +115,18 @@ fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/1').then(handleErrors).the
             // console.log("Message 5th element: ");
             // console.log(msgList[5]);
 
-            const msg = msgList[Math.floor(Math.random() * msgList.length)];
+            index = Math.floor(Math.random() * msgList.length);
+            const msg = msgList[index];
+            const url = urlList[index];
+
             const msgContainer = document.getElementById('anime-container');
+            const urlContainer = document.getElementById('anime-link');
+
             createListElement(msg);
+            createListElement(url);
             msgContainer.innerText = msg;
-            console.log(msg);
+            urlContainer.innerText = url;
+            console.log(msg + "\n watch at: " + url);
         });
     });
 }
