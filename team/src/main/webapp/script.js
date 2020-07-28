@@ -48,7 +48,7 @@ function randomizeAnime() {
 }
 
 /** this function will eventually give a list of animes that are similar to user input */
-function anime(){
+function anime() {
 
     //get user input. Link will be constructed based on that. name=animeGenre
     console.log("genre selected: ");
@@ -58,77 +58,91 @@ function anime(){
     var genre = e.options[e.selectedIndex].value;
     console.log(genre);
 
-//jikan implementation
+    //jikan implementation
     var msgList = [];
     var urlList = [];
     var image_urlList = [];
 
-//link in following line will need to be constructed, of sorts from a dropdown of genres
-//http://api.jikan.moe/v3/top/anime/1?recommendations=
+    //link in following line will need to be constructed, of sorts from a dropdown of genres
+    //http://api.jikan.moe/v3/top/anime/1?recommendations=
 
 
 
 
-//generate random page number too!
-var page ; //pulls a number 0 to 100 i think
-var lp;
-var index;
+    //generate random page number too!
+    var page; //pulls a number 0 to 100 i think
+    var lp;
+    var index;
 
-//fetch last possible page
-fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/1').then(handleErrors).then(response => response.text())//fetch from data
+    //fetch last possible page
+    fetch('https://api.jikan.moe/v3/genre/anime/' + genre).then(handleErrors).then(response => response.text())//fetch from data
         .then(text => {
             parsed = JSON.parse(text);
+            console.log(parsed);
             // console.log("last page: ");
             // console.log(parsed.last_page);
-                // console.log("last page:")
-                // console.log(parsed.last_page);
-                lp = parsed.last_page;//get number out of all available pages
-        
+            console.log("last page:")
+            console.log(parsed.last_page);
+            lp = parsed.last_page;//get number out of all available pages
 
-        page = Math.floor(Math.random() * lp);
+            page = Math.floor(Math.random() * lp);
 
-        console.log("link:");
-        console.log('https://api.jikan.moe/v3/genre/anime/'+genre+'/'+page);
+            console.log("link:");
+            console.log('https://api.jikan.moe/v3/genre/anime/' + genre + '/' + page);
 
-    fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/'+page).then(handleErrors).then(response => response.text())//fetch from data
-        .then(text => {
-            parsed = JSON.parse(text);
-            // console.log(parsed);
-  
-            parsed.anime.forEach(item =>{
-                // console.log(item.title);
-                 msgList.push(item.title);
-                 
-                 urlList.push(item.url);
-                //  console.log("link:")
-                //  console.log(item.url);
+            fetch('https://api.jikan.moe/v3/genre/anime/' + genre + '/' + page).then(handleErrors).then(response => response.text())//fetch from data
+                .then(text => {
+                    parsed = JSON.parse(text);
+                    // console.log(parsed);
 
-                 image_urlList.push(item.image_url);
-                //  console.log("image link:")
-                //  console.log(item.image_url);
-            })
-            
-            // console.log("Message list: ");
-            // console.log(msgList);
-            // console.log("Message length: ");
-            // console.log(msgList.length);
-            // console.log("Message 5th element: ");
-            // console.log(msgList[5]);
+                    parsed.anime.forEach(item => {
+                        // console.log(item.title);
+                        msgList.push(item.title);
 
-            index = Math.floor(Math.random() * msgList.length);
-            const msg = msgList[index];
-            const url = urlList[index];
+                        urlList.push(item.url);
+                        //  console.log("link:")
+                        //  console.log(item.url);
 
-            const msgContainer = document.getElementById('anime-container');
-            const urlContainer = document.getElementById('anime-link');
+                        image_urlList.push(item.image_url);
+                        //  console.log("image link:")
+                        //  console.log(item.image_url);
+                    })
 
-            createListElement(msg);
-            createListElement(url);
-            msgContainer.innerText = msg;
-            urlContainer.innerText = url;
-            console.log(msg + "\n watch at: " + url);
+                    // console.log("Message list: ");
+                    // console.log(msgList);
+                    // console.log("Message length: ");
+                    // console.log(msgList.length);
+                    // console.log("Message 5th element: ");
+                    // console.log(msgList[5]);
+
+                    index = Math.floor(Math.random() * msgList.length);
+                    const msg = msgList[index];
+                    const url = urlList[index];
+                    const image_url = image_urlList[index];
+
+                    const msgContainer = document.getElementById('anime-container');
+                    const imageContainer = document.getElementById('anime-image');
+
+                    createListElement(msg);
+                    createListElement(url);//output is a string
+
+                    msgContainer.innerText = msg;
+
+                    var myImage = new Image();//was 100, 200
+                    myImage.src = image_url;
+                    imageContainer.appendChild(myImage);
+
+                    console.log("image url:");
+                    console.log(image_url);
+
+                    var str = msg;
+                    var result = str.link(url);
+                    msgContainer.innerHTML = result;
+
+                    msgContainer.href = urlList[index];
+                    console.log(msg + "\n watch at: " + url);
+                });
         });
-    });
 }
 
 /** I just laid the framwork and made this function the onclick for the 'click me' randomize button ---Nikita */
