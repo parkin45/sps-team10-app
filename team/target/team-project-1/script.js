@@ -64,10 +64,33 @@ function anime(){
 //link in following line will need to be constructed, of sorts from a dropdown of genres
 //http://api.jikan.moe/v3/top/anime/1?recommendations=
 
-    fetch('https://api.jikan.moe/v3/genre/anime/6').then(handleErrors).then(response => response.text())//fetch from data
+
+
+
+//generate random page number too!
+var page ; //pulls a number 0 to 100 i think
+var lp;
+
+//fetch last possible page
+fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/1').then(handleErrors).then(response => response.text())//fetch from data
         .then(text => {
             parsed = JSON.parse(text);
-            console.log(parsed);
+            // console.log("last page: ");
+            // console.log(parsed.last_page);
+                // console.log("last page:")
+                // console.log(parsed.last_page);
+                lp = parsed.last_page;//get number out of all available pages
+        
+
+        page = Math.floor(Math.random() * lp);
+
+        console.log("link:");
+        console.log('https://api.jikan.moe/v3/genre/anime/'+genre+'/'+page);
+
+    fetch('https://api.jikan.moe/v3/genre/anime/'+genre+'/'+page).then(handleErrors).then(response => response.text())//fetch from data
+        .then(text => {
+            parsed = JSON.parse(text);
+            // console.log(parsed);
   
             parsed.anime.forEach(item =>{
                 // console.log(item.title);
@@ -87,6 +110,7 @@ function anime(){
             msgContainer.innerText = msg;
             console.log(msg);
         });
+    });
 }
 
 /** I just laid the framwork and made this function the onclick for the 'click me' randomize button ---Nikita */
