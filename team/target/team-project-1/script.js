@@ -66,6 +66,12 @@ function randomizeAnime() {
             myImage.src = image_url;
             imageContainer.appendChild(myImage);
 
+            if(imageContainer.children.length == 0){
+                    imageContainer.appendChild(myImage);
+                    }else{
+                        imageContainer.replaceChild(myImage,imageContainer.children[0]);
+                    }
+
             var str = msg;
                     var result = str.link(url);
                     msgContainer.innerHTML = result;
@@ -103,7 +109,6 @@ function anime() {
     var page; //pulls a number 0 to 100 i think
     var lp;
     var index;
-    var myImage = new Image();//was 100, 200
 
     //fetch last possible page
     fetch('https://api.jikan.moe/v3/genre/anime/' + genre).then(handleErrors).then(response => response.text())//fetch from data
@@ -159,10 +164,14 @@ function anime() {
 
                     msgContainer.innerText = msg;
 
-                    
+                    var myImage = new Image();//was 100, 200
                     myImage.src = image_url;
-                    imageContainer.appendChild(myImage);
 
+                    if(imageContainer.children.length == 0){
+                    imageContainer.appendChild(myImage);
+                    }else{
+                        imageContainer.replaceChild(myImage,imageContainer.children[0]);
+                    }
                     console.log("image url:");
                     console.log(image_url);
 

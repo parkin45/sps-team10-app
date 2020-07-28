@@ -66,6 +66,12 @@ function randomizeAnime() {
             myImage.src = image_url;
             imageContainer.appendChild(myImage);
 
+            if(imageContainer.children.length == 0){
+                    imageContainer.appendChild(myImage);
+                    }else{
+                        imageContainer.replaceChild(myImage,imageContainer.children[0]);
+                    }
+
             var str = msg;
                     var result = str.link(url);
                     msgContainer.innerHTML = result;
@@ -160,8 +166,12 @@ function anime() {
 
                     var myImage = new Image();//was 100, 200
                     myImage.src = image_url;
-                    imageContainer.appendChild(myImage);
 
+                    if(imageContainer.children.length == 0){
+                    imageContainer.appendChild(myImage);
+                    }else{
+                        imageContainer.replaceChild(myImage,imageContainer.children[0]);
+                    }
                     console.log("image url:");
                     console.log(image_url);
 
