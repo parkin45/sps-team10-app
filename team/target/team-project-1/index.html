@@ -27,10 +27,9 @@ body {
 }
 </style>
   </head>
-  <body onload="showSlides()">
+  <body>
       <div class="topnav">
         <a class="active" href="index.html">Home</a>
-        <a href="links.html">Links</a>
         <a href="login.html">Login</a>
     </div>
       
@@ -38,25 +37,37 @@ body {
       <p style="border:2px solid #E9B8FF;width:500px;text-align:center; background-color: #DFE1FF">Welcome to our site for Anime recommendations! Login to save your recs! </p>
       <br> </br>
 
-    <img src="https://media.giphy.com/media/AdtvZ8gu9gZ32/giphy.gif" style="position:absolute; TOP:50px; RIGHT:10px; WIDTH:200px; HEIGHT:150px; border-radius: 18px; border:2px solid #E9B8FF;">
-    <img src="https://media.giphy.com/media/x4aIEIam2NtZxkYUgN/giphy.gif" style="position:absolute; TOP:220px; RIGHT:30px; WIDTH:200px; HEIGHT:200px; border-radius: 18px; border:2px solid #E9B8FF;">
-    <img src="https://media.giphy.com/media/p3fc8pEjsoGC4/giphy.gif" style="position:absolute; TOP:440px; RIGHT:60px; WIDTH:225px; HEIGHT:200px; border-radius: 18px; border:2px solid #E9B8FF;">
-    <img src="https://i.pinimg.com/originals/17/de/40/17de4054d7492dd270a869eb72168fc7.gif" style="position:absolute; TOP:650px; RIGHT:30px; WIDTH:200px; HEIGHT:200px; border-radius: 18px; border:2px solid #E9B8FF;">
-    <img src="https://data.whicdn.com/images/306040701/original.gif" style="position:absolute; TOP:860px; RIGHT:10px; WIDTH:200px; HEIGHT:150px; border-radius: 18px; border:2px solid #E9B8FF;">
+      <!-- gifs for right side of page -->
+      <img src="https://media.giphy.com/media/AdtvZ8gu9gZ32/giphy.gif" style="position:absolute; TOP:50px; RIGHT:10px; WIDTH:200px; HEIGHT:150px; border-radius: 18px; border:2px solid #E9B8FF;">
+      <img src="https://media.giphy.com/media/x4aIEIam2NtZxkYUgN/giphy.gif" style="position:absolute; TOP:220px; RIGHT:30px; WIDTH:200px; HEIGHT:200px; border-radius: 18px; border:2px solid #E9B8FF;">
+      <img src="https://media.giphy.com/media/p3fc8pEjsoGC4/giphy.gif" style="position:absolute; TOP:440px; RIGHT:60px; WIDTH:225px; HEIGHT:200px; border-radius: 18px; border:2px solid #E9B8FF;">
+      <img src="https://i.pinimg.com/originals/17/de/40/17de4054d7492dd270a869eb72168fc7.gif" style="position:absolute; TOP:650px; RIGHT:30px; WIDTH:200px; HEIGHT:200px; border-radius: 18px; border:2px solid #E9B8FF;">
+      <img src="https://data.whicdn.com/images/306040701/original.gif" style="position:absolute; TOP:860px; RIGHT:10px; WIDTH:200px; HEIGHT:150px; border-radius: 18px; border:2px solid #E9B8FF;">
 
+      <!-- images for left side of page -->
       <p style="border:2px solid #E9B8FF;width:200px;text-align:center; background-color: #DFE1FF"> You probably just finished an anime and feel like... </p> 
       <img src="/team-images/first.jpg"  style="position:absolute; TOP:275px; LEFT:10px; WIDTH:150px; HEIGHT:150px; border-radius: 8px; border:2px solid #E9B8FF;">
       <img src="/team-images/second.jpg" style="position:absolute; TOP:425px; LEFT:40px; WIDTH:150px; HEIGHT:150px; border-radius: 8px; border:2px solid #E9B8FF;">
       <img src="/team-images/third.jpg" style="position:absolute; TOP:575px; LEFT:60px; WIDTH:150px; HEIGHT:150px; border-radius: 8px; border:2px solid #E9B8FF;">
       <p style="border:2px solid #E9B8FF;width:300px;text-align:center; background-color: #DFE1FF; position:absolute; TOP:620px; LEFT:220px;"> 
-          Don't worry! Find similar titles to the last Anime you watched by entering it in the textbar!</p>  
+          Don't worry! Find similar titles to the last Anime genre you watched by clicking the dropdown!</p>  
       
-      <input type="text" placeholder="Enter an Anime Title..." style="border:2px solid #E9B8FF; border-radius: 8px; width:500px; height: 30px; text-align:left; background-color: #DFE1FF;position:absolute; TOP:690px; LEFT:620px;">
+      <!-- textbox for anime rec. generator -->
+      <select id="dropdown" name="animeGenre" style="font-family: Helvetica, Arial, sans-serif; border:2px solid #E9B8FF; border-radius: 8px; width:500px; height: 30px; text-align:left; background-color: #DFE1FF;position:absolute; TOP:690px; LEFT:620px;">
+          <!-- don't know values for genres, put random options just as placeholders-->
+          <option value="" disabled selected>Select an Anime Genre..</option>
+          <option value="2"> Adventure</option>
+          <option value="10">Fantasy</option>
+          <option value="30">Sports</option>
+          <option value="1">Action</option>
+          <option value="36">Slice of Life</option>
+          <option value="4">Comedy</option>
+      </select>
       <button onclick = "anime()" style="border:2px solid #E9B8FF; border-radius: 4px; text-align:center; background-color: #F6E3FE;position:absolute; TOP:690px; LEFT:1140px;"> Submit &#9775; </button>
       <div id="anime-container" style="border:2px solid #E9B8FF; width:300px; background-color: #ECDAB7;position:absolute; TOP:730px; LEFT:655px;">
-      
       </div>
 
+      <!-- random anime generator -->
       <p style="border:2px solid #E9B8FF;width:400px;text-align:center; background-color: #DFE1FF; position:absolute; TOP:750px;"> Haven't watched Anime or want a random title to watch? Click for a random Anime!</p> 
       <button onclick = "randomizeAnime()" style="border:2px solid #E9B8FF; width: 85px; border-radius: 4px; text-align:center; background-color: #F6E3FE;position:absolute; TOP:775px; LEFT:415px;"> Click me &#9775; </button>
       <div id="random-container" style="border:2px solid #E9B8FF; width:200px; background-color: #ECDAB7;position:absolute; TOP:825px; LEFT:20px;">
