@@ -25,38 +25,19 @@ function randomizeAnime() {
     fetch('https://api.jikan.moe/v3/top/anime/1/upcoming').then(handleErrors).then(response => response.text())//fetch from data
         .then(text => {
             parsed = JSON.parse(text);
-            // listing = parsed.anime;
             console.log(parsed);
-            // Object.keys(parsed).forEach(function (key) {
-            // for(let show in parsed){
-                // console.log(show, parsed[show]);
-            // console.log(parsed.top);
+  
             parsed.top.forEach(item =>{
                 // console.log(item.title);
                  msgList.push(item.title);
             })
-            // for (var key in parsed) {
-                
-                // if (parsed.hasOwnProperty(key)) {
-                //         console.log(key + " -> " + parsed[key]);
-                //     }
-
-                // Object.entries(parsed).forEach(item => {
-                
-                // console.log(parsed[key]);
-
-                // console.log(key, obj[key]);
-                // console.log(key);
-                // msgList.push(obj.title);
-            // }
-            // );
-            console.log("Message list: ");
-
-            console.log(msgList);
-            console.log("Message length: ");
-            console.log(msgList.length);
-            console.log("Message 5th element: ");
-            console.log(msgList[5]);
+            
+            // console.log("Message list: ");
+            // console.log(msgList);
+            // console.log("Message length: ");
+            // console.log(msgList.length);
+            // console.log("Message 5th element: ");
+            // console.log(msgList[5]);
 
             const msg = msgList[Math.floor(Math.random() * msgList.length)];
             const msgContainer = document.getElementById('random-container');
@@ -68,25 +49,44 @@ function randomizeAnime() {
 
 /** this function will eventually give a list of animes that are similar to user input */
 function anime(){
-//retrieve user input
 
-//get list of all shows for auto suggest?
+    //get user input. Link will be constructed based on that. name=animeGenre
+    console.log("genre selected: ");
+    // console.log(getElementById('animeGenre').value);
+    // console.log(document.getElementById('dropdown').value);
+    var e = document.getElementById("dropdown");
+    var genre = e.options[e.selectedIndex].value;
+    console.log(genre);
 
-//temp list of anime
-const msgList =
-        ['demon slayer',
-            'my hero academia',
-            'fruits basket',
-            'soul eater',
-            'konosuba',
-            'the disastarous life of saiki k',
-            '¯\_(ツ)_/¯'];
+//jikan implementation
+    var msgList = [];
 
-const msg = msgList[Math.floor(Math.random() * msgList.length)];
-    const msgContainer = document.getElementById('anime-container');
-    createListElement(msg);
-    msgContainer.innerText = msg;
-    console.log(msg);
+//link in following line will need to be constructed, of sorts from a dropdown of genres
+//http://api.jikan.moe/v3/top/anime/1?recommendations=
+
+    fetch('https://api.jikan.moe/v3/top/anime/1?recommendations=').then(handleErrors).then(response => response.text())//fetch from data
+        .then(text => {
+            parsed = JSON.parse(text);
+            console.log(parsed);
+  
+            parsed.top.forEach(item =>{
+                // console.log(item.title);
+                 msgList.push(item.title);
+            })
+            
+            // console.log("Message list: ");
+            // console.log(msgList);
+            // console.log("Message length: ");
+            // console.log(msgList.length);
+            // console.log("Message 5th element: ");
+            // console.log(msgList[5]);
+
+            const msg = msgList[Math.floor(Math.random() * msgList.length)];
+            const msgContainer = document.getElementById('anime-container');
+            createListElement(msg);
+            msgContainer.innerText = msg;
+            console.log(msg);
+        });
 }
 
 /** I just laid the framwork and made this function the onclick for the 'click me' randomize button ---Nikita */
