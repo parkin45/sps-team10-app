@@ -19,6 +19,8 @@ TODO:
 function randomizeAnime() {
     //jikan implementation
     var msgList = [];
+    var urlList = [];
+    var image_urlList = [];
     //http://api.jikan.moe/v3/top/anime/1/upcoming
     //demon example: https://api.jikan.moe/v3/genre/anime/6/1
 
@@ -29,7 +31,15 @@ function randomizeAnime() {
   
             parsed.top.forEach(item =>{
                 // console.log(item.title);
-                 msgList.push(item.title);
+                msgList.push(item.title);
+
+                urlList.push(item.url);
+                //  console.log("link:")
+                //  console.log(item.url);
+
+                image_urlList.push(item.image_url);
+                //  console.log("image link:")
+                //  console.log(item.image_url);
             })
             
             // console.log("Message list: ");
@@ -39,10 +49,30 @@ function randomizeAnime() {
             // console.log("Message 5th element: ");
             // console.log(msgList[5]);
 
-            const msg = msgList[Math.floor(Math.random() * msgList.length)];
+            index = Math.floor(Math.random() * msgList.length);
+            const msg = msgList[index];
+            const url = urlList[index];
+            const image_url = image_urlList[index];
+            
             const msgContainer = document.getElementById('random-container');
+            const imageContainer = document.getElementById('random-image');
+
             createListElement(msg);
+            createListElement(url);//output is a string
+
             msgContainer.innerText = msg;
+
+            var myImage = new Image();//was 100, 200
+            myImage.src = image_url;
+            imageContainer.appendChild(myImage);
+
+            var str = msg;
+                    var result = str.link(url);
+                    msgContainer.innerHTML = result;
+
+                    msgContainer.href = urlList[index];
+
+            // msgContainer.innerText = msg;
             console.log(msg);
         });
 }
@@ -73,6 +103,7 @@ function anime() {
     var page; //pulls a number 0 to 100 i think
     var lp;
     var index;
+    var myImage = new Image();//was 100, 200
 
     //fetch last possible page
     fetch('https://api.jikan.moe/v3/genre/anime/' + genre).then(handleErrors).then(response => response.text())//fetch from data
@@ -128,7 +159,7 @@ function anime() {
 
                     msgContainer.innerText = msg;
 
-                    var myImage = new Image();//was 100, 200
+                    
                     myImage.src = image_url;
                     imageContainer.appendChild(myImage);
 
