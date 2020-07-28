@@ -9,33 +9,30 @@ function handleErrors(response) {//in case etch malfunctions
     return response;
 }
 
+/*
+TODO: 
+- find better link for randomize anime (probably most suggested?)
+- make function to pull recomended from suggested anime (randomize anime. It's a matter of finding a link)
+- probably need to pull from list of all of mal's anime for dropdown function (once again, finding a link)
+ */
+
 function randomizeAnime() {
-    //old temp list of anime
-    // const msgList =
-    //     ['demon slayer',
-    //         'my hero academia',
-    //         'fruits basket',
-    //         'soul eater',
-    //         'konosuba',
-    //         'the disastarous life of saiki k',
-    //         '¯\_(ツ)_/¯'];
-
-
-
     //jikan implementation
     var msgList = [];
+    //http://api.jikan.moe/v3/top/anime/1/upcoming
+    //demon example: https://api.jikan.moe/v3/genre/anime/6/1
 
-    fetch('https://api.jikan.moe/v3/genre/anime/6/1').then(handleErrors).then(response => response.text())//fetch from data
+    fetch('https://api.jikan.moe/v3/top/anime/1/upcoming').then(handleErrors).then(response => response.text())//fetch from data
         .then(text => {
             parsed = JSON.parse(text);
-            listing = parsed.anime;
-            listing.forEach(function(obj) {
-                console.log(typeof obj.title);
-                msgList.push(obj.title);
-            }
-            );
-            console.log("Message list: ");
-
+            console.log(parsed);
+  
+            parsed.top.forEach(item =>{
+                // console.log(item.title);
+                 msgList.push(item.title);
+            })
+            
+            // console.log("Message list: ");
             // console.log(msgList);
             // console.log("Message length: ");
             // console.log(msgList.length);
@@ -52,9 +49,9 @@ function randomizeAnime() {
 
 /** this function will eventually give a list of animes that are similar to user input */
 function anime(){
-//retrieve list of anime from api somehow
-// const genres = jikanjs.loadGenre(anime).//theoretically will load genres
-// console.log(genres);
+//retrieve user input
+
+//get list of all shows for auto suggest?
 
 //temp list of anime
 const msgList =
